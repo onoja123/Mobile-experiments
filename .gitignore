@@ -1,0 +1,11 @@
+node_modules/
+.expo/
+dist/
+web-build/
+.DS_Store
+*.log
+.env
+.env.*
+
+# private project, not part of the public experiments
+bukko/

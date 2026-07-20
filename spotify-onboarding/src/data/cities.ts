@@ -1,0 +1,68 @@
+import type { MarqueeItem } from "@/types";
+
+export const CITIES: MarqueeItem[] = [
+  {
+    id: "newyork",
+    name: "New\nYork",
+    backgroundColor: "#274690",
+    textColor: "#9DB9F0",
+    imageUrl: "https://picsum.photos/seed/nyc31/200/200",
+    tilt: -5,
+  },
+  {
+    id: "london",
+    name: "London",
+    backgroundColor: "#B0413E",
+    textColor: "#F1C6C4",
+    imageUrl: "https://picsum.photos/seed/ldn12/200/200",
+    tilt: 6,
+  },
+  {
+    id: "berlin",
+    name: "Berlin",
+    backgroundColor: "#17181A",
+    textColor: "#FFD447",
+    imageUrl: "https://picsum.photos/seed/ber44/200/200?grayscale",
+    tilt: -6,
+  },
+  {
+    id: "tokyo",
+    name: "Tokyo",
+    backgroundColor: "#E9E4DA",
+    textColor: "#96938A",
+    imageUrl: "https://picsum.photos/seed/tyo8/200/200",
+    tilt: 5,
+  },
+  {
+    id: "paris",
+    name: "Paris",
+    backgroundColor: "#C78B4E",
+    textColor: "#2C2014",
+    imageUrl: "https://picsum.photos/seed/par5/200/200",
+    tilt: -7,
+  },
+  {
+    id: "amsterdam",
+    name: "Amster-\ndam",
+    backgroundColor: "#66743F",
+    textColor: "#3F4C22",
+    imageUrl: "https://picsum.photos/seed/ams9/200/200",
+    tilt: 4,
+  },
+  {
+    id: "losangeles",
+    name: "Los\nAngeles",
+    backgroundColor: "#7B97DE",
+    textColor: "#F5BFD3",
+    imageUrl: "https://picsum.photos/seed/lax2/200/200",
+    tilt: -5,
+  },
+  {
+    id: "barcelona",
+    name: "Barce-\nlona",
+    backgroundColor: "#6C3126",
+    textColor: "#E8A33A",
+    imageUrl: "https://picsum.photos/seed/bcn7/200/200",
+    tilt: 7,
+  },
+];

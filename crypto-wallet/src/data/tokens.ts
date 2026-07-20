@@ -1,0 +1,53 @@
+import { TokenId } from '../enums/tokenId.enum';
+import type { Token } from '../interfaces/token.interface';
+
+export const TOKENS: Token[] = [
+  {
+    id: TokenId.Eth,
+    name: 'Ethereum',
+    symbol: 'ETH',
+    network: 'Ethereum',
+    color: '#627EEA',
+    priceUsd: 2437.52,
+    balance: 0.305,
+    displayDecimals: 4,
+    feeUsd: 1.84,
+    eta: '~2 min',
+  },
+  {
+    id: TokenId.Usdc,
+    name: 'USDC',
+    symbol: 'USDC',
+    network: 'Base',
+    color: '#2775CA',
+    priceUsd: 1,
+    balance: 237.81,
+    displayDecimals: 2,
+    feeUsd: 0.02,
+    eta: '~30 sec',
+  },
+  {
+    id: TokenId.Btc,
+    name: 'Bitcoin',
+    symbol: 'BTC',
+    network: 'Bitcoin',
+    color: '#F7931A',
+    priceUsd: 67412.2,
+    balance: 0.0125,
+    displayDecimals: 6,
+    feeUsd: 3.1,
+    eta: '~25 min',
+  },
+  {
+    id: TokenId.Sol,
+    name: 'Solana',
+    symbol: 'SOL',
+    network: 'Solana',
+    color: '#9945FF',
+    priceUsd: 148.32,
+    balance: 4.85,
+    displayDecimals: 3,
+    feeUsd: 0.01,
+    eta: '~5 sec',
+  },
+];

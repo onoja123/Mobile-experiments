@@ -1,0 +1,10 @@
+export const TOPIC_CARD_HEIGHT = 192;
+export const FANNED_CARD_TOPS = [0, 26, 56, 90, 128, 186, 252, 322];
+export const FANNED_CARD_ROTATIONS = [-2.2, 1.8, -2.8, 1.6, -1.8, 2.2, -2.4, 1.4];
+export const COLLAPSED_STACK_TOP = 244;
+export const COLLAPSED_STRIP_GAP = 9;
+export const COLLAPSED_BASE_SCALE = 0.94;
+export const COLLAPSED_SCALE_STEP = 0.008;
+export const SELECTED_CARD_Z_INDEX = 100;
+export const BOTTOM_STRIP_CARD_Z_INDEX = 50;
+export const CARD_SPRING = { damping: 20, stiffness: 170, mass: 0.9 };

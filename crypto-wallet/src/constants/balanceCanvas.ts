@@ -1,0 +1,11 @@
+export const BALANCE_CANVAS_HEIGHT = 158;
+export const AMOUNT_SIZE = 54;
+export const LABEL_SIZE = 15;
+export const GAIN_SIZE = 15;
+export const LABEL_BASELINE = 26;
+export const AMOUNT_BASELINE = 96;
+export const GAIN_BASELINE = 136;
+export const BLUR_MAX = 18;
+export const PILL_GAP = 8;
+export const PILL_PAD_X = 8;
+export const PILL_HEIGHT = 24;

@@ -1,0 +1,16 @@
+export const colors = {
+  black: "#000000",
+  white: "#FFFFFF",
+  canvas: "#F7F6F4",
+  ink: "#111111",
+  card: "#0B0B0B",
+  muted: "#A6A6A6",
+  faint: "#C4C4C4",
+  hairline: "#EDECEA",
+  credit: "#6BCB8B",
+  sand: "#F5F1EB",
+  xboxGreen: "#107C10",
+  mastercardRed: "#EB001B",
+  mastercardAmber: "#F79E1B",
+  mastercardOverlap: "#FF5F00",
+} as const;

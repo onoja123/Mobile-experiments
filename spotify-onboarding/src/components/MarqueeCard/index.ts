@@ -1,0 +1,1 @@
+export { MarqueeCard } from "./MarqueeCard";

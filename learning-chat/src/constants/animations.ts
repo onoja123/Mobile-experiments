@@ -1,0 +1,5 @@
+export const CHAT_ENTER_DURATION_MS = 320;
+export const CHAT_EXIT_DURATION_MS = 280;
+export const MESSAGE_ENTER_DURATION_MS = 340;
+export const TYPING_ENTER_DURATION_MS = 260;
+export const TYPING_PULSE_DURATION_MS = 650;

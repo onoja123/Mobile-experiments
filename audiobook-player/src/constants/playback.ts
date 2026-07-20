@@ -1,0 +1,2 @@
+export const TRACK_DURATION_SECONDS = 180;
+export const SKIP_INTERVAL_SECONDS = 15;

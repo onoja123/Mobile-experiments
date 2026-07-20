@@ -1,0 +1,68 @@
+import type { MarqueeItem } from "@/types";
+
+export const ARTISTS: MarqueeItem[] = [
+  {
+    id: "tyler",
+    name: "Tyler the\nCreator",
+    backgroundColor: "#66743F",
+    textColor: "#3F4C22",
+    imageUrl: "https://i.pravatar.cc/200?img=53",
+    tilt: -5,
+  },
+  {
+    id: "jake",
+    name: "Jake\nIsaac",
+    backgroundColor: "#E9E4DA",
+    textColor: "#96938A",
+    imageUrl: "https://i.pravatar.cc/200?img=59",
+    tilt: 6,
+  },
+  {
+    id: "altj",
+    name: "ALT-J",
+    backgroundColor: "#161616",
+    textColor: "#FF4D9D",
+    imageUrl: "https://i.pravatar.cc/200?img=12",
+    tilt: -6,
+  },
+  {
+    id: "cas",
+    name: "Cigarettes\nAfter Sex",
+    backgroundColor: "#101010",
+    textColor: "#F4F4F4",
+    imageUrl: "https://i.pravatar.cc/200?img=61",
+    tilt: 5,
+  },
+  {
+    id: "sigur",
+    name: "Sigur\nRós",
+    backgroundColor: "#C78B4E",
+    textColor: "#2C2014",
+    imageUrl: "https://i.pravatar.cc/200?img=13",
+    tilt: -7,
+  },
+  {
+    id: "tame",
+    name: "Tame\nImpala",
+    backgroundColor: "#7B97DE",
+    textColor: "#F5BFD3",
+    imageUrl: "https://i.pravatar.cc/200?img=68",
+    tilt: 4,
+  },
+  {
+    id: "sampha",
+    name: "Sampha",
+    backgroundColor: "#6C3126",
+    textColor: "#E8A33A",
+    imageUrl: "https://i.pravatar.cc/200?img=33",
+    tilt: -5,
+  },
+  {
+    id: "bon",
+    name: "Bon\nIver",
+    backgroundColor: "#E08A35",
+    textColor: "#4A2E10",
+    imageUrl: "https://i.pravatar.cc/200?img=69",
+    tilt: 7,
+  },
+];

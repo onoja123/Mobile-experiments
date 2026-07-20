@@ -1,0 +1,9 @@
+export const TAB_BAR_CONTENT_HEIGHT = 56;
+export const SHEET_HANDLE_HEIGHT = 22;
+export const SEARCH_BAR_HEIGHT = 52;
+export const ROUTE_HEADER_CONTENT_HEIGHT = 170;
+export const SHEET_MID_SCREEN_RATIO = 0.675;
+export const COLLAPSED_SHEET_BOTTOM_GAP = 14;
+export const SCREEN_HORIZONTAL_PADDING = 16;
+export const TAB_SCREEN_TOP_GAP = 12;
+export const TAB_SCREEN_BOTTOM_GAP = 24;

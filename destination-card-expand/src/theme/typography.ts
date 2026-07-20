@@ -1,0 +1,15 @@
+export const typography = {
+  screenTitle: { fontSize: 32 },
+  price: { fontSize: 30 },
+  cardTitle: { fontSize: 24, lineHeight: 33 },
+  sectionTitle: { fontSize: 20 },
+  summaryTotal: { fontSize: 19 },
+  emphasis: { fontSize: 17 },
+  paragraph: { fontSize: 16.5, lineHeight: 27 },
+  callout: { fontSize: 16 },
+  body: { fontSize: 15 },
+  reviewText: { fontSize: 15, lineHeight: 23 },
+  chip: { fontSize: 14 },
+  caption: { fontSize: 13 },
+  badge: { fontSize: 12 },
+} as const;

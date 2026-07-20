@@ -1,0 +1,38 @@
+{
+  "name": "bolt-app",
+  "version": "1.0.0",
+  "main": "expo-router/entry",
+  "dependencies": {
+    "@expo/vector-icons": "^15.0.2",
+    "@gorhom/bottom-sheet": "^5.2.14",
+    "babel-preset-expo": "~57.0.0",
+    "expo": "~57.0.1",
+    "expo-constants": "~57.0.3",
+    "expo-linear-gradient": "~57.0.0",
+    "expo-linking": "~57.0.1",
+    "expo-router": "~57.0.3",
+    "expo-status-bar": "~57.0.0",
+    "nativewind": "^4.2.6",
+    "react": "19.2.3",
+    "react-native": "0.86.0",
+    "react-native-gesture-handler": "~2.32.0",
+    "react-native-maps": "1.27.2",
+    "react-native-reanimated": "4.5.0",
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-screens": "4.25.2",
+    "react-native-stage-sheet": "github:onoja123/react-native-stage-sheet#7b809991b070277de19788066143e7c1dbf448bd",
+    "react-native-worklets": "0.10.0"
+  },
+  "devDependencies": {
+    "@types/react": "~19.2.2",
+    "tailwindcss": "^3.4.17",
+    "typescript": "~6.0.3"
+  },
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "private": true
+}
