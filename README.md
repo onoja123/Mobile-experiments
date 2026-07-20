@@ -18,6 +18,7 @@ This is where I keep my React Native / Expo experiments — animations, gestures
 | [retro-terminal](retro-terminal) | Terminal / sci-fi styled animated screens |
 | [spotify-onboarding](spotify-onboarding) | Connect flow with an arcing card marquee |
 | [sticky-note-peel](sticky-note-peel) | Notes that peel and fold under your finger |
+| [trend-catcher](trend-catcher) | Streetwear discovery feed with parallax collection titles |
 | [wallet-card-gestures](wallet-card-gestures) | Gesture-driven credit card stack |
 | [workflow-canvas](workflow-canvas) | Node canvas UI for a workflow automation tool |
 
