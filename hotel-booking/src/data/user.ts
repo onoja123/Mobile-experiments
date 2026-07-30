@@ -1,4 +1,4 @@
 export const CURRENT_USER = {
-  firstName: 'Runel',
+  firstName: 'Godwin',
   unreadNotifications: 3,
 };

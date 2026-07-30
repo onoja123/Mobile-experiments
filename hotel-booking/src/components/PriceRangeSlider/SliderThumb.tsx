@@ -1,14 +1,32 @@
 import { GestureDetector } from 'react-native-gesture-handler';
-import Animated, { useAnimatedStyle } from 'react-native-reanimated';
+import Animated, {
+  useAnimatedReaction,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from 'react-native-reanimated';
 
 import { shadows } from '@/theme';
 
-import { THUMB_SIZE } from './PriceRangeSlider.constants';
+import { THUMB_GRAB_SCALE, THUMB_SIZE, THUMB_SPRING } from './PriceRangeSlider.constants';
 import { SliderThumbProps } from './PriceRangeSlider.types';
 
-export function SliderThumb({ gesture, position }: SliderThumbProps) {
+export function SliderThumb({ gesture, frac, width, thumbIndex, activeThumb }: SliderThumbProps) {
+  const grabScale = useSharedValue(1);
+
+  useAnimatedReaction(
+    () => activeThumb.value === thumbIndex,
+    (grabbed, prev) => {
+      if (grabbed === prev) return;
+      grabScale.value = withSpring(grabbed ? THUMB_GRAB_SCALE : 1, THUMB_SPRING);
+    },
+  );
+
   const thumbStyle = useAnimatedStyle(() => ({
-    transform: [{ translateX: position.value - THUMB_SIZE / 2 }],
+    transform: [
+      { translateX: frac.value * width - THUMB_SIZE / 2 },
+      { scale: grabScale.value },
+    ],
   }));
 
   return (

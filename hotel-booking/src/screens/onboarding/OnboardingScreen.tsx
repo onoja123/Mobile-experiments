@@ -25,7 +25,7 @@ export function OnboardingScreen() {
   return (
     <SafeAreaView className="flex-1 bg-white">
       <View className="flex-row items-start justify-center pt-3">
-        <Text className="font-jakarta-semibold text-[15px] tracking-[3px] text-ink">ESCAPE</Text>
+        <Text className="font-jakarta-semibold text-[15px] tracking-[3px] text-ink">ISLA</Text>
         <Text className="font-jakarta-semibold text-[9px] text-ink">°</Text>
       </View>
 
@@ -37,9 +37,9 @@ export function OnboardingScreen() {
         entering={FadeInDown.delay(TAGLINE_ENTER_DELAY_MS).duration(ONBOARDING_ENTER_MS)}
         className="items-center px-8"
       >
-        <Text className="font-jakarta-medium text-[13px] text-muted">No stress — just travel</Text>
+        <Text className="font-jakarta-medium text-[13px] text-muted">Sun, sea and slow days</Text>
         <Text className="mt-2 text-center font-jakarta-semibold text-[30px] leading-[38px] tracking-[-0.5px] text-ink">
-          Find the perfect{'\n'}place to relax for{'\n'}a couple of taps
+          Your Mediterranean{'\n'}escape is a couple{'\n'}of taps away
         </Text>
       </Animated.View>
 
@@ -52,7 +52,7 @@ export function OnboardingScreen() {
           className="h-14 items-center justify-center rounded-full bg-pill"
           onPress={startExploring}
         >
-          <Text className="font-jakarta-semibold text-[15px] text-white">Let’s escape</Text>
+          <Text className="font-jakarta-semibold text-[15px] text-white">Off to the island</Text>
         </PressableScale>
       </Animated.View>
     </SafeAreaView>

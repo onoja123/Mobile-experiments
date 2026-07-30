@@ -1,81 +1,67 @@
 import { useState } from 'react';
 import { View } from 'react-native';
 import { Gesture } from 'react-native-gesture-handler';
-import Animated, {
-  runOnJS,
-  useAnimatedReaction,
-  useAnimatedStyle,
-  useSharedValue,
-} from 'react-native-reanimated';
+import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 
 import { DemandHistogram } from './DemandHistogram';
 import {
   BAR_GAP,
-  DEFAULT_DOMAIN_MAX,
-  DEFAULT_DOMAIN_MIN,
   DEMAND_BAR_HEIGHTS,
-  PRICE_STEP,
+  MIN_GAP_FRAC,
   THUMB_SIZE,
 } from './PriceRangeSlider.constants';
 import { PriceRangeSliderProps } from './PriceRangeSlider.types';
 import { SliderThumb } from './SliderThumb';
 
-export function PriceRangeSlider({
-  domainMin = DEFAULT_DOMAIN_MIN,
-  domainMax = DEFAULT_DOMAIN_MAX,
-  initialLow,
-  initialHigh,
-  onChange,
-}: PriceRangeSliderProps) {
+export function PriceRangeSlider({ range }: PriceRangeSliderProps) {
   const [width, setWidth] = useState(0);
+  const { loFrac, hiFrac, activeThumb } = range;
 
-  const lowX = useSharedValue(0);
-  const highX = useSharedValue(0);
+  const lowPan = Gesture.Pan()
+    .onBegin(() => {
+      activeThumb.value = 0;
+    })
+    .onChange((e) => {
+      if (width === 0) return;
+      const next = loFrac.value + e.changeX / width;
+      loFrac.value = Math.min(Math.max(0, next), hiFrac.value - MIN_GAP_FRAC);
+    })
+    .onFinalize(() => {
+      activeThumb.value = -1;
+    });
 
-  useAnimatedReaction(
-    () => {
-      if (width === 0) return null;
-      const ratio = (domainMax - domainMin) / width;
-      const low = Math.round((domainMin + lowX.value * ratio) / PRICE_STEP) * PRICE_STEP;
-      const high = Math.round((domainMin + highX.value * ratio) / PRICE_STEP) * PRICE_STEP;
-      return { low, high };
-    },
-    (curr, prev) => {
-      if (curr && (curr.low !== prev?.low || curr.high !== prev?.high)) {
-        runOnJS(onChange)(curr.low, curr.high);
-      }
-    },
-  );
-
-  const lowPan = Gesture.Pan().onChange((e) => {
-    lowX.value = Math.min(Math.max(0, lowX.value + e.changeX), highX.value - THUMB_SIZE);
-  });
-  const highPan = Gesture.Pan().onChange((e) => {
-    highX.value = Math.max(Math.min(width, highX.value + e.changeX), lowX.value + THUMB_SIZE);
-  });
+  const highPan = Gesture.Pan()
+    .onBegin(() => {
+      activeThumb.value = 1;
+    })
+    .onChange((e) => {
+      if (width === 0) return;
+      const next = hiFrac.value + e.changeX / width;
+      hiFrac.value = Math.max(Math.min(1, next), loFrac.value + MIN_GAP_FRAC);
+    })
+    .onFinalize(() => {
+      activeThumb.value = -1;
+    });
 
   const activeTrackStyle = useAnimatedStyle(() => ({
-    left: lowX.value,
-    width: highX.value - lowX.value,
+    left: loFrac.value * width,
+    width: (hiFrac.value - loFrac.value) * width,
   }));
 
   const barWidth =
     width > 0 ? (width - BAR_GAP * (DEMAND_BAR_HEIGHTS.length - 1)) / DEMAND_BAR_HEIGHTS.length : 0;
 
   return (
-    <View
-      onLayout={(e) => {
-        const w = e.nativeEvent.layout.width;
-        if (w > 0 && width === 0) {
-          lowX.value = ((initialLow - domainMin) / (domainMax - domainMin)) * w;
-          highX.value = ((initialHigh - domainMin) / (domainMax - domainMin)) * w;
-          setWidth(w);
-        }
-      }}
-    >
+    <View onLayout={(e) => setWidth(e.nativeEvent.layout.width)}>
       {width > 0 && (
         <>
-          <DemandHistogram barWidth={barWidth} lowX={lowX} highX={highX} />
+          <DemandHistogram
+            width={width}
+            barWidth={barWidth}
+            loFrac={loFrac}
+            hiFrac={hiFrac}
+            activeThumb={activeThumb}
+          />
 
           <View className="mt-2 justify-center" style={{ height: THUMB_SIZE + 8 }}>
             <View className="h-[3px] rounded-full bg-line" />
@@ -83,8 +69,20 @@ export function PriceRangeSlider({
               className="absolute h-[3px] rounded-full bg-ink"
               style={activeTrackStyle}
             />
-            <SliderThumb gesture={lowPan} position={lowX} />
-            <SliderThumb gesture={highPan} position={highX} />
+            <SliderThumb
+              gesture={lowPan}
+              frac={loFrac}
+              width={width}
+              thumbIndex={0}
+              activeThumb={activeThumb}
+            />
+            <SliderThumb
+              gesture={highPan}
+              frac={hiFrac}
+              width={width}
+              thumbIndex={1}
+              activeThumb={activeThumb}
+            />
           </View>
         </>
       )}

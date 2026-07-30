@@ -1,26 +1,50 @@
 import { PanGesture } from 'react-native-gesture-handler';
 import { SharedValue } from 'react-native-reanimated';
 
-export type PriceRangeSliderProps = {
+export type UsePriceRangeOptions = {
   domainMin?: number;
   domainMax?: number;
   initialLow: number;
   initialHigh: number;
-  onChange: (low: number, high: number) => void;
+  onChange?: (low: number, high: number) => void;
+};
+
+export type PriceRange = {
+  loFrac: SharedValue<number>;
+  hiFrac: SharedValue<number>;
+  activeThumb: SharedValue<number>;
+  lowDisplay: SharedValue<number>;
+  highDisplay: SharedValue<number>;
+  reset: () => void;
+};
+
+export type PriceRangeSliderProps = {
+  range: PriceRange;
 };
 
 export type DemandHistogramProps = {
+  width: number;
   barWidth: number;
-  lowX: SharedValue<number>;
-  highX: SharedValue<number>;
+  loFrac: SharedValue<number>;
+  hiFrac: SharedValue<number>;
+  activeThumb: SharedValue<number>;
 };
 
-export type HistogramBarProps = DemandHistogramProps & {
+export type HistogramBarProps = {
   index: number;
+  barWidth: number;
   height: number;
+  centerFrac: number;
+  barCount: number;
+  loFrac: SharedValue<number>;
+  hiFrac: SharedValue<number>;
+  activeThumb: SharedValue<number>;
 };
 
 export type SliderThumbProps = {
   gesture: PanGesture;
-  position: SharedValue<number>;
+  frac: SharedValue<number>;
+  width: number;
+  thumbIndex: number;
+  activeThumb: SharedValue<number>;
 };

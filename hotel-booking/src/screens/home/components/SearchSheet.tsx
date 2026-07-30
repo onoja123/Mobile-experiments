@@ -1,125 +1,132 @@
 import { useState } from 'react';
-import { Modal, Pressable, ScrollView, Text, View } from 'react-native';
+import { Pressable, ScrollView, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { PressableScale, PriceRangeSlider, Stepper } from '@/components';
+import { PressableScale, PriceRangeSlider, Stepper, usePriceRange } from '@/components';
 import { MIN_BOTTOM_INSET } from '@/constants/layout';
+import { HOTELS } from '@/data/hotels';
 import { PropertyType } from '@/enums';
+import { formatUsDate } from '@/helpers/formatUsDate';
+import { parseUsDate } from '@/helpers/parseUsDate';
 import { palette } from '@/theme';
 
-import { SEARCH_DEFAULTS, SHEET_TOP_OFFSET } from '../home.constants';
+import { SEARCH_DEFAULTS, SEARCH_LATENCY_MS } from '../home.constants';
 import { DateRangeRow } from './DateRangeRow';
 import { FieldLabel } from './FieldLabel';
 import { LocationField } from './LocationField';
 import { PriceBoundsRow } from './PriceBoundsRow';
 import { PropertyTypeSelector } from './PropertyTypeSelector';
+import { SearchButton } from './SearchButton';
 
 type SearchSheetProps = {
-  visible: boolean;
+  height: number;
+  bottomInset: number;
   onClose: () => void;
 };
 
-export function SearchSheet({ visible, onClose }: SearchSheetProps) {
-  const insets = useSafeAreaInsets();
+export function SearchSheet({ height, bottomInset, onClose }: SearchSheetProps) {
   const [location, setLocation] = useState(SEARCH_DEFAULTS.location);
   const [adults, setAdults] = useState(SEARCH_DEFAULTS.adults);
   const [children, setChildren] = useState(SEARCH_DEFAULTS.children);
-  const [minPrice, setMinPrice] = useState(SEARCH_DEFAULTS.minPrice);
-  const [maxPrice, setMaxPrice] = useState(SEARCH_DEFAULTS.maxPrice);
   const [propertyType, setPropertyType] = useState<PropertyType>(SEARCH_DEFAULTS.propertyType);
-  const [sliderKey, setSliderKey] = useState(0);
+  const [dateRange, setDateRange] = useState<{ start: Date | null; end: Date | null }>(() => ({
+    start: parseUsDate(SEARCH_DEFAULTS.checkIn),
+    end: parseUsDate(SEARCH_DEFAULTS.checkOut),
+  }));
+  const range = usePriceRange({
+    initialLow: SEARCH_DEFAULTS.minPrice,
+    initialHigh: SEARCH_DEFAULTS.maxPrice,
+  });
 
   const resetFilters = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     setLocation(SEARCH_DEFAULTS.location);
     setAdults(SEARCH_DEFAULTS.adults);
     setChildren(SEARCH_DEFAULTS.children);
-    setMinPrice(SEARCH_DEFAULTS.minPrice);
-    setMaxPrice(SEARCH_DEFAULTS.maxPrice);
     setPropertyType(SEARCH_DEFAULTS.propertyType);
-    setSliderKey((key) => key + 1);
+    setDateRange({
+      start: parseUsDate(SEARCH_DEFAULTS.checkIn),
+      end: parseUsDate(SEARCH_DEFAULTS.checkOut),
+    });
+    range.reset();
   };
 
-  const submitSearch = () => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    onClose();
+  const runSearch = async () => {
+    await new Promise((resolve) => setTimeout(resolve, SEARCH_LATENCY_MS));
+    const town = location.split(',')[0].trim();
+    const dates =
+      dateRange.start && dateRange.end
+        ? `${formatUsDate(dateRange.start).slice(0, 5)} – ${formatUsDate(dateRange.end).slice(0, 5)}`
+        : 'Any dates';
+    return {
+      title: `${HOTELS.length} stays found`,
+      subtitle: `${town} · ${dates} · ${adults + children} guests`,
+    };
   };
 
   return (
-    <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
-      <Pressable className="flex-1 bg-black/30" onPress={onClose} />
+    <View
+      className="px-5"
+      style={{ height, paddingBottom: Math.max(bottomInset, MIN_BOTTOM_INSET) }}
+    >
+      <View className="h-12 items-center justify-center">
+        <Text className="font-jakarta-semibold text-[15px] text-ink">Search places</Text>
+        <Pressable hitSlop={10} className="absolute right-0" onPress={onClose}>
+          <Ionicons name="close" size={22} color={palette.ink} />
+        </Pressable>
+      </View>
 
-      <View
-        className="absolute inset-x-0 bottom-0 rounded-t-[28px] bg-white px-5"
-        style={{
-          top: insets.top + SHEET_TOP_OFFSET,
-          paddingBottom: Math.max(insets.bottom, MIN_BOTTOM_INSET),
-        }}
-      >
-        <View className="h-14 items-center justify-center">
-          <Text className="font-jakarta-semibold text-[15px] text-ink">Search places</Text>
-          <Pressable hitSlop={10} className="absolute right-0" onPress={onClose}>
-            <Ionicons name="close" size={22} color={palette.ink} />
-          </Pressable>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerClassName="pb-4">
+        <Text className="mt-1 font-jakarta-bold text-[20px] text-ink">
+          Your stay is just a tap away
+        </Text>
+        <Text className="mt-1 font-jakarta text-[13px] text-muted">
+          Set your travel preferences to see tailored stays
+        </Text>
+
+        <FieldLabel className="mt-6">Location</FieldLabel>
+        <LocationField value={location} onChangeText={setLocation} />
+
+        <FieldLabel className="mt-5">Dates</FieldLabel>
+        <DateRangeRow
+          start={dateRange.start}
+          end={dateRange.end}
+          onChangeRange={(start, end) => setDateRange({ start, end })}
+        />
+
+        <View className="mt-5 flex-row gap-3">
+          <View className="flex-1">
+            <FieldLabel>Adults</FieldLabel>
+            <Stepper value={adults} min={1} onChange={setAdults} />
+          </View>
+          <View className="flex-1">
+            <FieldLabel>Children</FieldLabel>
+            <Stepper value={children} onChange={setChildren} />
+          </View>
         </View>
 
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerClassName="pb-4">
-          <Text className="mt-1 font-jakarta-bold text-[20px] text-ink">
-            Your stay is just a tap away
-          </Text>
-          <Text className="mt-1 font-jakarta text-[13px] text-muted">
-            Set your travel preferences to see tailored stays
-          </Text>
+        <FieldLabel className="mt-6">Price range</FieldLabel>
+        <PriceRangeSlider range={range} />
+        <PriceBoundsRow
+          lowDisplay={range.lowDisplay}
+          highDisplay={range.highDisplay}
+          initialLow={SEARCH_DEFAULTS.minPrice}
+          initialHigh={SEARCH_DEFAULTS.maxPrice}
+        />
 
-          <FieldLabel className="mt-6">Location</FieldLabel>
-          <LocationField value={location} onChangeText={setLocation} />
+        <PropertyTypeSelector selected={propertyType} onSelect={setPropertyType} />
 
-          <FieldLabel className="mt-5">Dates</FieldLabel>
-          <DateRangeRow dates={[SEARCH_DEFAULTS.checkIn, SEARCH_DEFAULTS.checkOut]} />
-
-          <View className="mt-5 flex-row gap-3">
-            <View className="flex-1">
-              <FieldLabel>Adults</FieldLabel>
-              <Stepper value={adults} min={1} onChange={setAdults} />
-            </View>
-            <View className="flex-1">
-              <FieldLabel>Children</FieldLabel>
-              <Stepper value={children} onChange={setChildren} />
-            </View>
-          </View>
-
-          <FieldLabel className="mt-6">Price range</FieldLabel>
-          <PriceRangeSlider
-            key={sliderKey}
-            initialLow={minPrice}
-            initialHigh={maxPrice}
-            onChange={(low, high) => {
-              setMinPrice(low);
-              setMaxPrice(high);
-            }}
-          />
-          <PriceBoundsRow low={minPrice} high={maxPrice} />
-
-          <PropertyTypeSelector selected={propertyType} onSelect={setPropertyType} />
-
-          <View className="mt-7 flex-row gap-3">
-            <PressableScale
-              className="h-[52px] flex-[0.8] items-center justify-center rounded-full border border-line bg-white"
-              onPress={resetFilters}
-            >
-              <Text className="font-jakarta-semibold text-[14px] text-ink">Reset</Text>
-            </PressableScale>
-            <PressableScale
-              className="h-[52px] flex-1 items-center justify-center rounded-full bg-pill"
-              onPress={submitSearch}
-            >
-              <Text className="font-jakarta-semibold text-[14px] text-white">Search</Text>
-            </PressableScale>
-          </View>
-        </ScrollView>
-      </View>
-    </Modal>
+        <View className="mt-7 flex-row gap-3">
+          <PressableScale
+            className="h-[52px] flex-[0.8] items-center justify-center rounded-full border border-line bg-white"
+            onPress={resetFilters}
+          >
+            <Text className="font-jakarta-semibold text-[14px] text-ink">Reset</Text>
+          </PressableScale>
+          <SearchButton search={runSearch} onComplete={onClose} />
+        </View>
+      </ScrollView>
+    </View>
   );
 }

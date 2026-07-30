@@ -4,7 +4,13 @@ import { HistogramBar } from './HistogramBar';
 import { BAR_GAP, DEMAND_BAR_HEIGHTS, HISTOGRAM_HEIGHT } from './PriceRangeSlider.constants';
 import { DemandHistogramProps } from './PriceRangeSlider.types';
 
-export function DemandHistogram({ barWidth, lowX, highX }: DemandHistogramProps) {
+export function DemandHistogram({
+  width,
+  barWidth,
+  loFrac,
+  hiFrac,
+  activeThumb,
+}: DemandHistogramProps) {
   return (
     <View className="flex-row items-end" style={{ gap: BAR_GAP, height: HISTOGRAM_HEIGHT }}>
       {DEMAND_BAR_HEIGHTS.map((height, index) => (
@@ -13,8 +19,11 @@ export function DemandHistogram({ barWidth, lowX, highX }: DemandHistogramProps)
           index={index}
           barWidth={barWidth}
           height={height}
-          lowX={lowX}
-          highX={highX}
+          centerFrac={(index * (barWidth + BAR_GAP) + barWidth / 2) / width}
+          barCount={DEMAND_BAR_HEIGHTS.length}
+          loFrac={loFrac}
+          hiFrac={hiFrac}
+          activeThumb={activeThumb}
         />
       ))}
     </View>

@@ -3,6 +3,7 @@ import { ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useStageSheet } from 'react-native-stage-sheet';
 
 import { SCREEN_ENTER_MS } from '@/constants/animation';
 import { ROUTES } from '@/constants/routes';
@@ -23,17 +24,24 @@ import { HOTEL_FILTERS, SECTION_STAGGER_MS } from './home.constants';
 
 export function HomeScreen() {
   const router = useRouter();
-  const [isSearchOpen, setSearchOpen] = useState(false);
+  const { present } = useStageSheet();
   const [activeFilter, setActiveFilter] = useState(HOTEL_FILTERS[0]);
   const [activeTab, setActiveTab] = useState(BottomTab.Home);
   const { isFavorite, toggleFavorite } = useFavorites(INITIAL_FAVORITE_HOTEL_IDS);
+
+  const openSearch = () =>
+    present({
+      render: ({ close, height, bottomInset }) => (
+        <SearchSheet height={height} bottomInset={bottomInset} onClose={close} />
+      ),
+    });
 
   return (
     <SafeAreaView className="flex-1 bg-white" edges={['top']}>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerClassName="pb-32">
         <Animated.View entering={FadeInDown.duration(SCREEN_ENTER_MS)} className="px-5 pt-2">
           <GreetingHeader />
-          <SearchBarTrigger onPress={() => setSearchOpen(true)} />
+          <SearchBarTrigger onPress={openSearch} />
         </Animated.View>
 
         <FilterChipRow
@@ -71,8 +79,6 @@ export function HomeScreen() {
       </ScrollView>
 
       <BottomNav active={activeTab} onChange={setActiveTab} />
-
-      <SearchSheet visible={isSearchOpen} onClose={() => setSearchOpen(false)} />
     </SafeAreaView>
   );
 }

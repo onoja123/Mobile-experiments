@@ -6,6 +6,7 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SheetStageProvider } from 'react-native-stage-sheet';
 
 import { NAV_FADE_MS, NAV_RISE_MS } from '@/constants/animation';
 import { appFonts, palette } from '@/theme';
@@ -23,20 +24,25 @@ export default function RootLayout() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <Stack
-        screenOptions={{
-          headerShown: false,
-          contentStyle: { backgroundColor: palette.white },
-        }}
-      >
-        <Stack.Screen name="index" />
-        <Stack.Screen name="home" options={{ animation: 'fade', animationDuration: NAV_FADE_MS }} />
-        <Stack.Screen
-          name="hotel/[id]"
-          options={{ animation: 'fade_from_bottom', animationDuration: NAV_RISE_MS }}
-        />
-      </Stack>
-      <StatusBar style="dark" />
+      <SheetStageProvider>
+        <Stack
+          screenOptions={{
+            headerShown: false,
+            contentStyle: { backgroundColor: palette.white },
+          }}
+        >
+          <Stack.Screen name="index" />
+          <Stack.Screen
+            name="home"
+            options={{ animation: 'fade', animationDuration: NAV_FADE_MS }}
+          />
+          <Stack.Screen
+            name="hotel/[id]"
+            options={{ animation: 'fade_from_bottom', animationDuration: NAV_RISE_MS }}
+          />
+        </Stack>
+        <StatusBar style="dark" />
+      </SheetStageProvider>
     </GestureHandlerRootView>
   );
 }

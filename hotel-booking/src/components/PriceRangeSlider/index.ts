@@ -1,2 +1,7 @@
 export { PriceRangeSlider } from './PriceRangeSlider';
-export type { PriceRangeSliderProps } from './PriceRangeSlider.types';
+export { usePriceRange } from './usePriceRange';
+export type {
+  PriceRange,
+  PriceRangeSliderProps,
+  UsePriceRangeOptions,
+} from './PriceRangeSlider.types';
