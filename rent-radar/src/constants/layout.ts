@@ -1,0 +1,10 @@
+export const TAB_BAR_HEIGHT = 64;
+export const TAB_BAR_COLLAPSED_HEIGHT = 48;
+export const TAB_BAR_BOTTOM_OFFSET = 12;
+export const TAB_BAR_HORIZONTAL_INSET = 24;
+export const TAB_BAR_INDICATOR_HEIGHT = 48;
+export const TAB_BAR_INDICATOR_COLLAPSED_HEIGHT = 38;
+export const TAB_BAR_PADDING = 8;
+export const CAROUSEL_CARD_WIDTH = 320;
+export const CAROUSEL_CARD_GAP = 14;
+export const ZOOM_STEP = 0.5;
