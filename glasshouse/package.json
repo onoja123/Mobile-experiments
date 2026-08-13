@@ -1,0 +1,30 @@
+{
+  "name": "glasshouse",
+  "main": "expo-router/entry",
+  "version": "1.0.0",
+  "dependencies": {
+    "expo": "~57.0.4",
+    "expo-constants": "~57.0.3",
+    "expo-glass-effect": "~57.0.0",
+    "expo-haptics": "~57.0.0",
+    "expo-image": "~57.0.0",
+    "expo-linking": "~57.0.2",
+    "expo-router": "~57.0.4",
+    "expo-status-bar": "~57.0.0",
+    "expo-symbols": "~57.0.0",
+    "react": "19.2.3",
+    "react-native": "0.86.0",
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-screens": "4.25.2"
+  },
+  "devDependencies": {
+    "@types/react": "~19.2.2",
+    "typescript": "~6.0.3"
+  },
+  "scripts": {
+    "start": "expo start",
+    "ios": "expo start --ios",
+    "android": "expo start --android"
+  },
+  "private": true
+}

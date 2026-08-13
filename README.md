@@ -11,6 +11,7 @@ This is where I keep my React Native / Expo experiments — animations, gestures
 | [crypto-wallet](crypto-wallet) | Balance digits that scramble and lock in on pull-to-refresh |
 | [destination-card-expand](destination-card-expand) | Travel cards that expand into a detail sheet |
 | [fold-to-delete](fold-to-delete) | Drag a folder to the delete zone and it folds away |
+| [glasshouse](glasshouse) | Art gallery with the iOS zoom transition and liquid glass chrome |
 | [gooey-fab](gooey-fab) | FAB that splits into actions with a liquid metaball effect |
 | [hotel-booking](hotel-booking) | Hotel search with an orbiting photo onboarding |
 | [learning-chat](learning-chat) | Topic cards and a scripted practice chat |
