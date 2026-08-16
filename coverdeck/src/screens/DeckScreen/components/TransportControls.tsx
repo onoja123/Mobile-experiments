@@ -1,8 +1,8 @@
 import { Pressable, StyleSheet, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
-import { SymbolView, type SFSymbol } from 'expo-symbols';
 import * as Haptics from 'expo-haptics';
 
+import Icon, { type IconName } from '@/components/Icon';
 import { PRESS_SPRING } from '@/constants/springs';
 import { colors } from '@/theme';
 
@@ -31,7 +31,7 @@ export default function TransportControls({
 }
 
 type ControlButtonProps = {
-  symbol: SFSymbol;
+  symbol: IconName;
   size: number;
   onPress: () => void;
 };
@@ -54,7 +54,7 @@ function ControlButton({ symbol, size, onPress }: ControlButtonProps) {
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
           onPress();
         }}>
-        <SymbolView name={symbol} size={size} tintColor={colors.label} />
+        <Icon name={symbol} size={size} color={colors.label} />
       </Pressable>
     </Animated.View>
   );

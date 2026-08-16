@@ -5,14 +5,13 @@ import Animated, {
   useAnimatedStyle,
   type SharedValue,
 } from 'react-native-reanimated';
-import MaskedView from '@react-native-masked-view/masked-view';
 import { Image } from 'expo-image';
-import { LinearGradient } from 'expo-linear-gradient';
 
 import type { Album } from '@/data/albums';
 import { colors } from '@/theme';
 
 import { MAX_TILT_DEG, PERSPECTIVE, REFLECTION_RATIO, SIDE_SCALE } from './Coverflow.constants';
+import Reflection from './Reflection';
 
 type CoverCardProps = {
   album: Album;
@@ -71,23 +70,14 @@ export default function CoverCard({
         transition={200}
         recyclingKey={album.id}
       />
-      {/* Alpha-masked so the reflection fades into whatever the animated
-          backdrop happens to be, instead of a fixed background color. */}
-      <MaskedView
-        style={[styles.reflection, { width: size, height: reflectionHeight }]}
-        maskElement={
-          <LinearGradient
-            colors={['rgba(0,0,0,0.45)', 'rgba(0,0,0,0.12)', 'transparent']}
-            locations={[0, 0.55, 1]}
-            style={StyleSheet.absoluteFill}
-          />
-        }>
-        <Image
-          source={{ uri: album.imageUrl }}
-          style={{ width: size, height: size, transform: [{ scaleY: -1 }] }}
-          contentFit="cover"
+      <View style={styles.reflection}>
+        <Reflection
+          uri={album.imageUrl}
+          id={album.id}
+          size={size}
+          height={reflectionHeight}
         />
-      </MaskedView>
+      </View>
     </Animated.View>
   );
 }
@@ -104,7 +94,5 @@ const styles = StyleSheet.create({
   },
   reflection: {
     marginTop: 3,
-    borderRadius: 6,
-    overflow: 'hidden',
   },
 });

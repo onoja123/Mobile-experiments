@@ -2,8 +2,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
-import { SymbolView } from 'expo-symbols';
 
+import Icon from '@/components/Icon';
 import { albums } from '@/data/albums';
 import { tabBarController } from '@/tabBarController';
 import { colors } from '@/theme';
@@ -49,7 +49,7 @@ export default function LibraryScreen() {
             </Text>
             <Text style={styles.rowSubtitle}>{playlist.count} songs</Text>
           </View>
-          <SymbolView name="chevron.right" size={14} tintColor={colors.tertiaryLabel} />
+          <Icon name="chevron.right" size={14} color={colors.tertiaryLabel} />
         </View>
       ))}
     </Animated.ScrollView>
