@@ -1,0 +1,25 @@
+{
+  "expo": {
+    "name": "Coverdeck",
+    "slug": "coverdeck",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#F6F5F7",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.onoja18.coverdeck"
+    },
+    "android": {
+      "package": "com.onoja18.coverdeck",
+      "adaptiveIcon": {
+        "backgroundColor": "#09090C",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    }
+  }
+}
