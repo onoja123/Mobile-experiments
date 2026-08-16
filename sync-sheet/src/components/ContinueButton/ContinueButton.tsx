@@ -8,12 +8,11 @@ import Animated, {
 import * as Haptics from 'expo-haptics';
 
 import { PRESS_SPRING } from '@/constants/springs';
-import { usePalette } from '@/theme';
+import { colors } from '@/theme';
 
 import type { ContinueButtonProps } from './ContinueButton.types';
 
 export default function ContinueButton({ label, onPress }: ContinueButtonProps) {
-  const palette = usePalette();
   const scale = useSharedValue(1);
 
   const pressStyle = useAnimatedStyle(() => ({
@@ -28,14 +27,14 @@ export default function ContinueButton({ label, onPress }: ContinueButtonProps) 
   return (
     <Animated.View style={pressStyle}>
       <Pressable
-        style={[styles.button, { backgroundColor: palette.tint }]}
+        style={[styles.button, { backgroundColor: colors.tint }]}
         onPressIn={() => scale.set(withSpring(0.96, PRESS_SPRING))}
         onPressOut={() => scale.set(withSpring(1, PRESS_SPRING))}
         onPress={handlePress}>
         <Animated.Text
           key={label}
           entering={FadeIn.duration(180)}
-          style={[styles.label, { color: palette.onTint }]}>
+          style={[styles.label, { color: colors.onTint }]}>
           {label}
         </Animated.Text>
       </Pressable>

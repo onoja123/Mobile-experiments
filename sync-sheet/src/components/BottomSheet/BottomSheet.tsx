@@ -16,7 +16,7 @@ import type { LayoutChangeEvent } from 'react-native';
 
 import { DISMISS_SPRING, SHEET_SPRING } from '@/constants/springs';
 import { rubberBand } from '@/helpers/rubberBand';
-import { usePalette } from '@/theme';
+import { colors } from '@/theme';
 
 import type { BottomSheetProps } from './BottomSheet.types';
 
@@ -33,7 +33,6 @@ export default function BottomSheet({ visible, onDismiss, children }: BottomShee
   const [mounted, setMounted] = useState(visible);
   const { height: screenHeight } = useWindowDimensions();
   const insets = useSafeAreaInsets();
-  const palette = usePalette();
 
   const translateY = useSharedValue(screenHeight);
   const sheetHeight = useSharedValue(0);
@@ -139,10 +138,10 @@ export default function BottomSheet({ visible, onDismiss, children }: BottomShee
           onLayout={handleLayout}
           style={[
             styles.sheet,
-            { bottom: bottomInset, backgroundColor: palette.sheet },
+            { bottom: bottomInset, backgroundColor: colors.sheet },
             sheetStyle,
           ]}>
-          <View style={[styles.grabber, { backgroundColor: palette.grabber }]} />
+          <View style={[styles.grabber, { backgroundColor: colors.grabber }]} />
           {children}
         </Animated.View>
       </GestureDetector>

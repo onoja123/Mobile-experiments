@@ -6,7 +6,7 @@ import BottomSheet from '@/components/BottomSheet';
 import ContinueButton from '@/components/ContinueButton';
 import IconStack from '@/components/IconStack';
 import SyncRows, { ROW_COUNT, ROWS_PER_PRESS } from '@/components/SyncRows';
-import { usePalette } from '@/theme';
+import { colors } from '@/theme';
 
 import type { HealthSyncSheetProps } from './HealthSyncSheet.types';
 
@@ -16,7 +16,6 @@ const DISMISS_CLEANUP_DELAY_MS = 450;
 
 export default function HealthSyncSheet({ visible, onDismiss }: HealthSyncSheetProps) {
   const [visibleRows, setVisibleRows] = useState(0);
-  const palette = usePalette();
   const allShown = visibleRows >= ROW_COUNT;
 
   useEffect(() => {
@@ -36,8 +35,8 @@ export default function HealthSyncSheet({ visible, onDismiss }: HealthSyncSheetP
   return (
     <BottomSheet visible={visible} onDismiss={onDismiss}>
       <IconStack synced={visibleRows > 0} />
-      <Text style={[styles.title, { color: palette.label }]}>Apple Health Sync</Text>
-      <Text style={[styles.caption, { color: palette.secondaryLabel }]}>
+      <Text style={[styles.title, { color: colors.label }]}>Apple Health Sync</Text>
+      <Text style={[styles.caption, { color: colors.secondaryLabel }]}>
         Connect with Apple Health so both apps can gossip about your workouts behind your back.
       </Text>
       <SyncRows count={visibleRows} />

@@ -5,7 +5,8 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#F2F2F7",
     "ios": {
       "supportsTablet": true
     },
@@ -19,7 +20,11 @@
       "predictiveBackGestureEnabled": false
     },
     "web": {
+      "output": "single",
       "favicon": "./assets/favicon.png"
+    },
+    "experiments": {
+      "baseUrl": "/demos/sync-sheet"
     }
   }
 }

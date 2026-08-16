@@ -1,5 +1,6 @@
 {
   "extends": "expo/tsconfig.base",
+  "exclude": ["dist"],
   "compilerOptions": {
     "strict": true,
     "paths": {

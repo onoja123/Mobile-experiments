@@ -1,6 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 import Svg, { Defs, LinearGradient, Rect, Stop } from 'react-native-svg';
-import { SymbolView } from 'expo-symbols';
+
+import Icon from '@/components/Icon';
 
 import { TILE_RADIUS, TILE_SIZE } from './IconStack.constants';
 
@@ -16,7 +17,11 @@ export default function AppTile() {
         </Defs>
         <Rect width={TILE_SIZE} height={TILE_SIZE} rx={TILE_RADIUS} fill="url(#app)" />
       </Svg>
-      <SymbolView name="bolt.fill" size={30} tintColor="#FFFFFF" />
+      {/* Absolute too: on web an absolutely-positioned sibling paints over
+          static ones, which would bury the glyph under the gradient. */}
+      <View style={[StyleSheet.absoluteFill, styles.tile]}>
+        <Icon name="bolt.fill" size={30} color="#FFFFFF" />
+      </View>
     </View>
   );
 }

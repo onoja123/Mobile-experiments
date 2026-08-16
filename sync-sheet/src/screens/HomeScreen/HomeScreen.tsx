@@ -4,14 +4,13 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import Fab from '@/components/Fab';
 import HealthSyncSheet from '@/components/HealthSyncSheet';
-import { usePalette } from '@/theme';
+import { colors } from '@/theme';
 
 import MetricCard from './components/MetricCard';
 
 export default function HomeScreen() {
   const [sheetVisible, setSheetVisible] = useState(false);
   const insets = useSafeAreaInsets();
-  const palette = usePalette();
 
   const today = new Date().toLocaleDateString(undefined, {
     weekday: 'long',
@@ -23,12 +22,12 @@ export default function HomeScreen() {
     <View
       style={[
         styles.screen,
-        { backgroundColor: palette.background, paddingTop: insets.top + 8 },
+        { backgroundColor: colors.background, paddingTop: insets.top + 8 },
       ]}>
-      <Text style={[styles.eyebrow, { color: palette.secondaryLabel }]}>
+      <Text style={[styles.eyebrow, { color: colors.secondaryLabel }]}>
         {today.toUpperCase()}
       </Text>
-      <Text style={[styles.title, { color: palette.label }]}>Summary</Text>
+      <Text style={[styles.title, { color: colors.label }]}>Summary</Text>
       <View style={styles.cards}>
         <MetricCard
           symbol="flame.fill"

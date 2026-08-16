@@ -1,2 +1,1 @@
-export { light, dark, type Palette } from './colors';
-export { usePalette } from './usePalette';
+export { colors } from './colors';

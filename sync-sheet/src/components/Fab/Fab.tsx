@@ -1,10 +1,10 @@
-import { Pressable, StyleSheet } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Svg, { Circle, Defs, LinearGradient, Stop } from 'react-native-svg';
-import { SymbolView } from 'expo-symbols';
 import * as Haptics from 'expo-haptics';
 
+import Icon from '@/components/Icon';
 import { PRESS_SPRING } from '@/constants/springs';
 
 import type { FabProps } from './Fab.types';
@@ -38,7 +38,11 @@ export default function Fab({ onPress }: FabProps) {
           </Defs>
           <Circle cx={SIZE / 2} cy={SIZE / 2} r={SIZE / 2} fill="url(#fab)" />
         </Svg>
-        <SymbolView name="heart.fill" size={26} tintColor="#FFFFFF" />
+        {/* Absolute too: on web an absolutely-positioned sibling paints over
+            static ones, which would bury the glyph under the gradient. */}
+        <View style={[StyleSheet.absoluteFill, styles.center]}>
+          <Icon name="heart.fill" size={26} color="#FFFFFF" />
+        </View>
       </Pressable>
     </Animated.View>
   );
@@ -57,6 +61,10 @@ const styles = StyleSheet.create({
   button: {
     width: SIZE,
     height: SIZE,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  center: {
     alignItems: 'center',
     justifyContent: 'center',
   },

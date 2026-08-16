@@ -6,14 +6,14 @@ import Animated, {
   withDelay,
   withSpring,
 } from 'react-native-reanimated';
-import { SymbolView, type SFSymbol } from 'expo-symbols';
 
+import Icon, { type IconName } from '@/components/Icon';
 import { GROW_SPRING } from '@/constants/springs';
-import { usePalette } from '@/theme';
+import { colors } from '@/theme';
 
 import type { SyncRowsProps } from './SyncRows.types';
 
-const ROWS: { symbol: SFSymbol; text: string }[] = [
+const ROWS: { symbol: IconName; text: string }[] = [
   {
     symbol: 'square.and.arrow.up',
     text: 'Every workout you record here gets bragged about to Apple Health.',
@@ -72,14 +72,13 @@ export default function SyncRows({ count }: SyncRowsProps) {
 }
 
 type RowProps = {
-  symbol: SFSymbol;
+  symbol: IconName;
   text: string;
   visible: boolean;
   delay: number;
 };
 
 function Row({ symbol, text, visible, delay }: RowProps) {
-  const palette = usePalette();
   const progress = useSharedValue(0);
 
   useEffect(() => {
@@ -98,9 +97,9 @@ function Row({ symbol, text, visible, delay }: RowProps) {
   return (
     <Animated.View style={[styles.row, rowStyle]}>
       <View style={styles.rowIcon}>
-        <SymbolView name={symbol} size={20} tintColor={palette.secondaryLabel} />
+        <Icon name={symbol} size={20} color={colors.secondaryLabel} />
       </View>
-      <Text style={[styles.rowText, { color: palette.label }]}>{text}</Text>
+      <Text style={[styles.rowText, { color: colors.label }]}>{text}</Text>
     </Animated.View>
   );
 }

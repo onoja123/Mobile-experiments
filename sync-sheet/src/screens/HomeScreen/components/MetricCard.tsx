@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { SymbolView, type SFSymbol } from 'expo-symbols';
 
-import { usePalette } from '@/theme';
+import Icon, { type IconName } from '@/components/Icon';
+import { colors } from '@/theme';
 
 type MetricCardProps = {
-  symbol: SFSymbol;
+  symbol: IconName;
   tint: string;
   label: string;
   value: string;
@@ -13,19 +13,17 @@ type MetricCardProps = {
 };
 
 export default function MetricCard({ symbol, tint, label, value, unit, caption }: MetricCardProps) {
-  const palette = usePalette();
-
   return (
-    <View style={[styles.card, { backgroundColor: palette.sheet }]}>
+    <View style={[styles.card, { backgroundColor: colors.sheet }]}>
       <View style={styles.header}>
-        <SymbolView name={symbol} size={16} tintColor={tint} />
+        <Icon name={symbol} size={16} color={tint} />
         <Text style={[styles.label, { color: tint }]}>{label}</Text>
       </View>
       <View style={styles.valueRow}>
-        <Text style={[styles.value, { color: palette.label }]}>{value}</Text>
-        <Text style={[styles.unit, { color: palette.secondaryLabel }]}>{unit}</Text>
+        <Text style={[styles.value, { color: colors.label }]}>{value}</Text>
+        <Text style={[styles.unit, { color: colors.secondaryLabel }]}>{unit}</Text>
       </View>
-      <Text style={[styles.caption, { color: palette.secondaryLabel }]}>{caption}</Text>
+      <Text style={[styles.caption, { color: colors.secondaryLabel }]}>{caption}</Text>
     </View>
   );
 }
