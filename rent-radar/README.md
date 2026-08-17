@@ -2,7 +2,9 @@
 
 ![Rent Radar demo](demo.gif)
 
-Map-based rental explorer. Full-screen map with price pins, a location pill up top, a swipeable property card carousel, and a liquid glass tab bar (iOS 26) with a blur fallback everywhere else.
+Map-based rental explorer. Price pins over a full-screen map, a location pill up top, and a card carousel along the bottom you can swipe through. The nav bar collapses as you scroll and comes back when you head up again.
+
+The tab bar is real liquid glass on iOS 26, with a blur fallback everywhere else.
 
 ```
 npm install
