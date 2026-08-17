@@ -2,7 +2,7 @@
 
 ![sticky-note-peel demo](demo.gif)
 
-Sticky-note peel gesture. Drag a corner and the note folds along the perpendicular bisector between corner and finger, so the flap lands exactly under your thumb. Flick it toward the dock to file or delete it.
+Drag a corner of a note and it peels. The fold runs along the perpendicular bisector between the corner and your finger, so the flap always lands exactly under your thumb no matter which way you pull. Flick it toward the dock to file or delete it.
 
 Expo 57, Reanimated, Gesture Handler, SVG, NativeWind.
 

@@ -2,9 +2,11 @@
 
 ![sync-sheet demo](demo.gif)
 
-Recreation of the @expo/ui bottom-sheet example as a fully custom Reanimated sheet, tuned for iOS feel. A Health-style Summary screen with a heart FAB — tap it and a floating fitted sheet springs up over a live-blurred background with an Apple Health sync card. The health tile fans out from behind the app icon, each Continue press reveals two more rows and grows the sheet with a spring, and the blur sharpens continuously as you drag the sheet down to toss it away.
+Tap the heart and a sheet springs up over the summary, blurring it out behind. Press Continue and two more rows appear, and the sheet grows to fit them — it has no set height, the content is what moves it.
 
-Expo 57, Reanimated, Gesture Handler, SVG, SF Symbols, expo-blur, haptics. Row icons are SF Symbols, so the sheet is iOS-only in spirit.
+Drag it down and it comes with you: the blur sharpens as it goes, so the background comes back into focus under your finger, and a flick throws the sheet off the bottom carrying your velocity into the spring.
+
+Expo 57, Reanimated, Gesture Handler, SVG, expo-blur, haptics. Icons are SF Symbols on iOS and hand-drawn SVG everywhere else.
 
 ## Run
 

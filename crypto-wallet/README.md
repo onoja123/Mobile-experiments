@@ -2,7 +2,9 @@
 
 ![crypto-wallet demo](demo.gif)
 
-Crypto wallet UI. Pull to refresh and the balance digits scramble and lock back in left to right, with an Apple-style spinner. Also has swap, send, receive and IPO subscribe flows.
+Pull down on the wallet and the balance falls apart. The digits start slot-machining through random characters, tinting and jittering behind a blur while it fetches, then lock back in one at a time from left to right as the blur unwinds.
+
+Send, receive, swap and IPO slide up as sheets with the wallet scaling back behind them. On swap, the two token chips arc past each other rather than colliding.
 
 Expo 54, @shopify/react-native-skia, Reanimated, Gesture Handler, NativeWind.
 
