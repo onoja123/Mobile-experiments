@@ -1,5 +1,7 @@
 # Rent Radar
 
+![Rent Radar demo](demo.gif)
+
 Map-based rental explorer. Full-screen map with price pins, a location pill up top, a swipeable property card carousel, and a liquid glass tab bar (iOS 26) with a blur fallback everywhere else.
 
 ```

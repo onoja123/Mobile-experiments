@@ -1,5 +1,7 @@
 # spotify-onboarding
 
+![spotify-onboarding demo](demo.gif)
+
 Spotify-style connect/onboarding flow with an arcing card marquee of artists and cities.
 
 Expo 57, Reanimated, SVG, expo-blur, NativeWind.

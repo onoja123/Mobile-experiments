@@ -1,5 +1,7 @@
 # wallet-card-gestures
 
+![wallet-card-gestures demo](demo.gif)
+
 Wallet screen with gesture-driven credit cards — drag/swipe the card stack, transaction list underneath.
 
 Expo 57, Reanimated, Gesture Handler, SVG, NativeWind.
