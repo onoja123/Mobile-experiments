@@ -14,7 +14,11 @@ import type { HealthSyncSheetProps } from './HealthSyncSheet.types';
 // otherwise it visibly shrinks mid-dismissal.
 const DISMISS_CLEANUP_DELAY_MS = 450;
 
-export default function HealthSyncSheet({ visible, onDismiss }: HealthSyncSheetProps) {
+export default function HealthSyncSheet({
+  visible,
+  onDismiss,
+  blurTarget,
+}: HealthSyncSheetProps) {
   const [visibleRows, setVisibleRows] = useState(0);
   const allShown = visibleRows >= ROW_COUNT;
 
@@ -33,7 +37,7 @@ export default function HealthSyncSheet({ visible, onDismiss }: HealthSyncSheetP
   };
 
   return (
-    <BottomSheet visible={visible} onDismiss={onDismiss}>
+    <BottomSheet visible={visible} onDismiss={onDismiss} blurTarget={blurTarget}>
       <IconStack synced={visibleRows > 0} />
       <Text style={[styles.title, { color: colors.label }]}>Apple Health Sync</Text>
       <Text style={[styles.caption, { color: colors.secondaryLabel }]}>

@@ -29,7 +29,12 @@ const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
 
 const MAX_BLUR = 40;
 
-export default function BottomSheet({ visible, onDismiss, children }: BottomSheetProps) {
+export default function BottomSheet({
+  visible,
+  onDismiss,
+  blurTarget,
+  children,
+}: BottomSheetProps) {
   const [mounted, setMounted] = useState(visible);
   const { height: screenHeight } = useWindowDimensions();
   const insets = useSafeAreaInsets();
@@ -128,7 +133,8 @@ export default function BottomSheet({ visible, onDismiss, children }: BottomShee
         <AnimatedBlurView
           animatedProps={blurProps}
           tint="default"
-          blurMethod="dimezisBlurView"
+          blurMethod="dimezisBlurViewSdk31Plus"
+          blurTarget={blurTarget}
           style={styles.fill}
         />
         <Animated.View style={[styles.dim, backdropStyle]} />
