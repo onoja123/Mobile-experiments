@@ -1,5 +1,7 @@
 # workflow-canvas
 
+![workflow-canvas demo](demo.gif)
+
 Mobile UI for a workflow automation tool: node canvas with an integration rail, workflow templates, org overview and usage stats.
 
 Expo 54, expo-router, Reanimated, NativeWind.

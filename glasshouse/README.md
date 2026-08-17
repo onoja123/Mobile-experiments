@@ -1,5 +1,7 @@
 # Glasshouse
 
+![Glasshouse demo](demo.gif)
+
 Art gallery concept built around two iOS-native tricks: Expo Router's zoom
 transition (`Link.AppleZoom`) and liquid glass (`expo-glass-effect`). A masonry
 grid of pieces, each with a glass title chip; tap one and the image flies into
