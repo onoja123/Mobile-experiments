@@ -1,0 +1,16 @@
+export const colors = {
+  paper: '#F1F2ED',
+  card: '#FFFFFF',
+  ink: '#14170F',
+  smoke: '#767A6E',
+  faint: '#B9BCB2',
+  line: '#E4E5DF',
+  accent: '#CDF463',
+  accentInk: '#5F8F14',
+  onAccent: '#161911',
+  danger: '#D9482A',
+  bitcoin: '#F7931A',
+  tether: '#26A17B',
+  ethereum: '#627EEA',
+  ethereumLight: '#BFD9F2',
+} as const;

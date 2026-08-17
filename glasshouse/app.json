@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "name": "Glasshouse",
+    "slug": "glasshouse",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "glasshouse",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#F5F4F1",
+    "ios": {
+      "supportsTablet": false
+    },
+    "plugins": ["expo-router"],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "Wyse Wallet",
+    "slug": "wyse-wallet",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#F1F2ED",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.godwin.wysewallet"
+    },
+    "android": {
+      "package": "com.godwin.wysewallet"
+    },
+    "plugins": [
+      "expo-font"
+    ],
+    "experiments": {
+      "baseUrl": "/demos/wyse-wallet"
+    }
+  }
+}
